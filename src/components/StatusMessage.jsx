@@ -6,9 +6,24 @@ const StatusMessage = ({winner,current}) => {
     });
   return (
     <h2>
-        {winner && `Winner is ${winner}`}
-        {!winner && !noMovesLeft && `Next Turn: ${current.turnX ? 'X':'O'}`}
-        {!winner && noMovesLeft && `Match Tied!!`}
+        {winner && (
+          <div> 
+            Winner is <span className={winner === 'X' ? 'text-orange':'text-green'}>{winner}</span>
+          </div>
+        )}
+        {!winner && !noMovesLeft && (
+        <>
+          Next Turn: <span className={current.turnX ? 'text-orange':'text-green'}>{current.turnX ? 'X':'O'}</span>
+        </>
+        )}
+        {!winner && noMovesLeft && 
+          (
+            <div>
+            <span className='text-orange'>X</span> and 
+            <span className='text-green'> O</span> tied!
+            </div>
+          )
+        }
     </h2>
   );
 };
